@@ -15,6 +15,8 @@
 set.seed(1234)
 work_path = "./"
 
+source("requirements.R")
+
 load("murine_raw.RData")
 All <- cbind(P136A1, P136A2, P136B1, P136B2, P138A1, P138A2, P138B1, P138B2)
 
