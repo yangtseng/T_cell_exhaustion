@@ -6,9 +6,9 @@
 ### T cell extraction, cell composition, T cell subtype annotation and differential expression analysis ###
 ###########################################################################################################
 
-##########################################################
-### T cell extraction from pre-processed seurat object ###
-##########################################################
+############################################################################
+### T cell extraction and visualization from pre-processed seurat object ###
+############################################################################
 set.seed(1234)
 work_path = "./"
 source("requirements.R")
@@ -48,10 +48,16 @@ HCC.tcell <- RunPCA(HCC.tcell, npcs = 50, verbose = F)
 ### We removed the batch effect through Harmony
 HCC.tcell <- RunHarmony(HCC.tcell, 'time')
 
-#UMAP and TSNE
+### We conducted two-dimensional reduction (UMAP/t-SNE) and clustering using UMAP and Leiden algorithm (igraph)
+### We used only 20 PCs for T cell under harmony reduction
 HCC.tcell <- RunUMAP(HCC.tcell, reduction = "harmony", dims = 1:20)
 HCC.tcell <- RunTSNE(HCC.tcell, reduction = 'harmony', dims = 1:20)
 HCC.tcell <- FindNeighbors(HCC.tcell, reduction = "harmony", dims = 1:20)
 HCC.tcell <- FindClusters(HCC.tcell, resolution = 0.5, algorithm = 4, method = 'igraph')
+
+######################################################
+### Cell composition and T cell subtype annotation ###
+######################################################
+
 
 
