@@ -1,5 +1,5 @@
 #################################
-### Section 1, Basic analyssi ###
+### Section 1, Basic analysis ###
 #################################
 
 ###############################################
@@ -10,7 +10,7 @@
 ### If you are looking for the cell-line like model analysis, please refer to the section 3
 
 ###############################################################
-### Step 1, read the raw files and remove low quality cells ###
+### Step 1, Read the raw files and remove low quality cells ###
 ###############################################################
 set.seed(1234)
 work_path = "./"
@@ -47,7 +47,7 @@ All_2 <- All_1[,2:ncol(All_1)]
 rownames(All_2) <- gene_symbol
 
 ###########################################################################
-### Step 2, preprocess the single-cell RNA-seq dataset with Seurat in R ###
+### Step 2, Preprocess the single-cell RNA-seq dataset with Seurat in R ###
 ###########################################################################
 
 ### We first created the Seurat object based on filtered data
