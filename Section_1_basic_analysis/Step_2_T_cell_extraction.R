@@ -6,4 +6,11 @@
 ### T cell extraction, cell composition and differential expression analysis ###
 ################################################################################
 
-### T cell extraction from pre-processed seurat object
+##########################################################
+### T cell extraction from pre-processed seurat object ###
+##########################################################
+
+work_path = "./"
+source("requirements.R")
+
+load()
