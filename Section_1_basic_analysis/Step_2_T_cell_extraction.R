@@ -102,4 +102,4 @@ tcell.marker <- FindAllMarkers(HCC.tcell, logfc.threshold = 0.5, only.pos = T)
 write.csv(tcell.marker, paste0(work_path, "tcell_markers.csv"))
 
 ### save RDS for pre-processed T cell
-saveRDS(HCC.tcell, paste0(work_path, ".rds"))
+saveRDS(HCC.tcell, paste0(work_path, "murine_tcell.rds"))
