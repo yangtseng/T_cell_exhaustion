@@ -54,10 +54,52 @@ HCC.tcell <- RunUMAP(HCC.tcell, reduction = "harmony", dims = 1:20)
 HCC.tcell <- RunTSNE(HCC.tcell, reduction = 'harmony', dims = 1:20)
 HCC.tcell <- FindNeighbors(HCC.tcell, reduction = "harmony", dims = 1:20)
 HCC.tcell <- FindClusters(HCC.tcell, resolution = 0.5, algorithm = 4, method = 'igraph')
+### T cells were clustering into 9 clusters
 
 ######################################################
-### Cell composition and T cell subtype annotation ###
+### T cell subtype annotation and cell composition ###
 ######################################################
 
+### T cell subtype annotation
+### We used several well-known T cell subtype marker and conducted cluster-based annotation
 
+### Effector T cell: Cd7, Gzmb, Gzmk
+### Exhausted T cell: Ctla4, Lag3, Pdcd1
+### High IFN response T cell: Ifit1, Ifit3, Isg15
+### Memory T cell: Il7r, Tcf7, S1pr1
+### Proliferative T cell: Ccna2, Ccnb2, Cdk1
 
+### all fifteen genes were plotted in same figure [Supp. Fig. 3b]
+feature <- c('Cd7','Gzmb','Gzmk','Ctla4','Lag3','Pdcd1','Ifit1','Ifit3','Isg15','Il7r','Tcf7', 'S1pr1', 'Ccna2','Ccnb2','Cdk1')
+suppfig3b <- FeaturePlot(HCC.tcell, features = feature, ncol = 3, order = F, combine = T, cols = c('grey80',"#D4524E")) & NoAxes() & NoLegend()
+suppfig3b <- suppfig3b  & theme(plot.title = element_text(size = 20, face = "italic"))
+
+### T cells were then annotated into 5 distinct subtypes
+celltype <- c('Exhausted T cell','Effector T cell', 'Memory T cell', 'Exhausted T cell', 'Exhausted T cell', 'Exhausted T cell', 'Effector T cell', 'Proliferative T cell', 'High IFN response T cell')
+names(celltype) <- levels(HCC.tcell)
+HCC.tcell <- RenameIdents(HCC.tcell, celltype)
+HCC.tcell$cell_type <- HCC.tcell@active.ident
+
+### Visualization [Supp. Fig. 3c]
+DimPlot(HCC.tcell, reduction = 'umap', group.by = 'cell_type', cols = c('#f3877f','#c2e8bc','#8ed3c7','#e2e1c3', '#bd89bd'))
+
+### T cell composition
+### We revealed the cell composition in each time point
+celltype <- as.data.frame(prop.table(table(HCC.tcell$cell_type)))
+celltype$Freq <- par(celltype$Freq)
+celltype$x <- 1
+celltype <- as.data.frame(celltype[order(celltype$Freq),])
+
+### Visualization [Supp. Fig. 3d]
+plot <- ggplot(celltype, aes(x = x, y = Freq, fill = Var1)) + geom_bar(stat="identity")
+
+########################################
+### Differential expression analysis ###
+########################################
+
+### We simply used Seurat FindMarkers() for differnetail expression analysis
+tcell.marker <- FindAllMarkers(HCC.tcell, logfc.threshold = 0.5, only.pos = T)
+write.csv(tcell.marker, paste0(work_path, "tcell_markers.csv"))
+
+### save RDS for pre-processed T cell
+saveRDS(HCC.tcell, paste0(work_path, ".rds"))
