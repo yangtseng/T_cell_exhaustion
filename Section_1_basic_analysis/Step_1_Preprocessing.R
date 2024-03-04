@@ -13,7 +13,7 @@
 ### Step 1, Read the raw files and remove low quality cells ###
 ###############################################################
 
-### After running this pipeline, you would obtain a  pre-processed seurat object
+### After running this pipeline, you would obtain a pre-processed seurat object
 
 set.seed(1234)
 work_path = "./"
