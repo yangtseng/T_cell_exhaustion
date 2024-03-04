@@ -69,6 +69,7 @@ cumu <- cumsum(pct)
 ### We determined the elbow point based on two criterias
 ### [1] PC exhibited cumulative percent greater than 90% and % variation associated with the PC as less than 5
 criteria1 <- which(cumu > 90 & pct < 5)[1]
+
 ### [2] the difference between variation of PC and subsequent PC
 criteria2 <- sort(which((pct[1:length(pct) - 1] - pct[2:length(pct)]) > 0.1), decreasing = T)[1] + 1
 
