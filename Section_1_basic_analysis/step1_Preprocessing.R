@@ -139,5 +139,5 @@ HCC.split <- SplitObject(HCC, split.by = 'Doublet')
 HCC_s <- HCC.split[['Singlet']]
 
 ### Save RDS
-saveRDS(HCC, paste0(work_path, "murine_doubletremoval2.rds"))
+saveRDS(HCC_s, paste0(work_path, "murine_doubletremoval2.rds"))
 
