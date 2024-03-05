@@ -73,4 +73,4 @@ TF.markers <- FindMarkers(HCC.tcell, only.pos = TRUE, ident.1 = c('1','4'), iden
 DoHeatmap(HCC.tcell, features =  HCC.tcell@assays[["TF"]]@data@Dimnames[["gene sets"]], slot = 'scale.data', raster = F) #+ scale_fill_viridis()
 
 ### save seurat object
-saveRDS(HCC.tcell, paste0(work_path, "HCC_tcell_TF6.rds"))
+saveRDS(HCC.tcell, paste0(work_path, "murine_tcell_TF6.rds"))
