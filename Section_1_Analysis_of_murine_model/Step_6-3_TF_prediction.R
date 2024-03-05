@@ -51,9 +51,26 @@ colnames(regulonAUC_matrix) <- regulonAUC@colData@rownames
 rownames(regulonAUC_matrix) <- regulonAUC@NAMES
 
 ### load seurat object
-HCC.tcell <- readRDS(paste0(work_path, ""))
+HCC.tcell <- readRDS(paste0(work_path, "murine_tcell_modulescore4.rds"))
 
 ### Create TF assay in seurat object
 HCC.tcell[['TF']] <- CreateAssayObject(counts = regulonAUC_matrix)
 
+############################################################
+### Step 4, Differential expression analysis with seurat ###
+############################################################
 
+### Set default assay to TF
+DefaultAssay(HCC_tcell) <- 'TF'
+
+### Scale the regulon AUC score
+HCC.tcell <- ScaleData(HCC.tcell)
+
+### Differentially expressed TF
+TF.markers <- FindMarkers(HCC.tcell, only.pos = TRUE, ident.1 = c('1','4'), ident.2 = c('2', '7'), min.pct = 0.1, logfc.threshold = 0)
+
+### Heatmap visualization [Supp. Fig. 6]
+DoHeatmap(HCC.tcell, features =  HCC.tcell@assays[["TF"]]@data@Dimnames[["gene sets"]], slot = 'scale.data', raster = F) #+ scale_fill_viridis()
+
+### save seurat object
+saveRDS(HCC.tcell, paste0(work_path, "HCC_tcell_TF6.rds"))
