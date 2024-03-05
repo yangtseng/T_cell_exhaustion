@@ -10,8 +10,10 @@
 
 ### single cell analysis
 library(Seurat)
+library(Signac)
 library(SeuratDisk)
 library(SeuratData)
+library(EnsDb.Mmusculus.v79)
 library(scater)
 library(Matrix)
 library(igraph)
