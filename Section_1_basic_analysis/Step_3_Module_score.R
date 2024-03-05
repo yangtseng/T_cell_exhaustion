@@ -44,4 +44,7 @@ g2m.genes <- cc.genes$g2m.genes
 ### Cell cycle score calculation via CellCycleScoring()
 HCC.tcell <- CellCycleScoring(HCC.tcell, s.features = s.genes, g2m.features = g2m.genes, set.ident = TRUE)
 
+### save RDS for pre-processed T cell
+saveRDS(HCC.tcell, paste0(work_path, "murine_tcell_modulescore4.rds"))
+
 ### If you would like to check out the code for the visualization of main figures, please refer to section 4.
