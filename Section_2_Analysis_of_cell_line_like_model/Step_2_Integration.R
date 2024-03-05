@@ -12,10 +12,10 @@ work_path = "./"
 source(paste0(work_path, "requirements.R"))
 
 ### Here, we integrated the single-cell multiome datasets from 4 independent samples
-naive_t <- Load(paste0(work_path, "naive_t.rds"))
-active_t <- Load(paste0(work_path, "active_t.rds"))
-exh_t72 <- Load(paste0(work_path, "exhaust_t72.rds"))
-exh_t96 <- Load(paste0(work_path, "exhaust_t96.rds"))
+naive_t <- readRDS(paste0(work_path, "naive_t.rds"))
+active_t <- readRDS(paste0(work_path, "active_t.rds"))
+exh_t72 <- readRDS(paste0(work_path, "exhaust_t72.rds"))
+exh_t96 <- readRDS(paste0(work_path, "exhaust_t96.rds"))
 
 ### Merge samples and annotated batches
 tcell <- merge(
@@ -78,4 +78,4 @@ tcell <- RunUMAP(
 )
 
 ### save the integrated data
-saveRDS(tcell, paste0(work_path, "Cellline_multiome6.rds"))
+saveRDS(tcell, paste0(work_path, "Cellline_multiome1.rds"))
