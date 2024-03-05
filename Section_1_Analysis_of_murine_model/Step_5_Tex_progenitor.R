@@ -10,7 +10,7 @@ set.seed(1234)
 work_path = "./"
 source("requirements.R")
 
-load(paste0(work_path, "murine_tcell_modulescore4.rds"))
+HCC.tcell <- readRDS(paste0(work_path, "murine_tcell_modulescore4.rds"))
 ### It will load a pre-processed seurat object of T cells from section 1, step 3
 
 ########################################
@@ -18,7 +18,7 @@ load(paste0(work_path, "murine_tcell_modulescore4.rds"))
 ########################################
 
 ### subclustering
-c4sub <- FindSubCluster(HCC_tcell, 4, "RNA_snn", subcluster.name = "sub.cluster", resolution = 0.5, algorithm = 1)
+c4sub <- FindSubCluster(HCC.tcell, 4, "RNA_snn", subcluster.name = "sub.cluster", resolution = 0.5, algorithm = 1)
 ### Cluster 4 was splited into 5 distinct sub-clusters
 
 #########################################################
