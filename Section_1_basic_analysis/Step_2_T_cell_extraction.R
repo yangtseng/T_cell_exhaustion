@@ -97,7 +97,7 @@ plot <- ggplot(celltype, aes(x = x, y = Freq, fill = Var1)) + geom_bar(stat="ide
 ### Differential expression analysis ###
 ########################################
 
-### We simply used Seurat FindMarkers() for differnetail expression analysis
+### We simply used Seurat FindAllMarkers() for differnetail expression analysis
 tcell.marker <- FindAllMarkers(HCC.tcell, logfc.threshold = 0.5, only.pos = T)
 write.csv(tcell.marker, paste0(work_path, "tcell_markers.csv"))
 
