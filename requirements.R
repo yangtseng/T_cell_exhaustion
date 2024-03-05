@@ -10,6 +10,8 @@
 
 ### single cell analysis
 library(Seurat)
+library(SeuratDisk)
+library(SeuratData)
 library(scater)
 library(Matrix)
 library(igraph)
@@ -17,7 +19,7 @@ library(SCENIC)
 library(circlize)
 library(dplyr)
 library(readr)
-library(Doubletfinder)
+library(DoubletFinder)
 
 ### ploting
 library(ggplot2)
