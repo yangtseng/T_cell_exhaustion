@@ -27,4 +27,4 @@ SaveH5Seurat(HCC.tcell, paste0(workt_path, "HCC_tcell.H5Seurat"), overwrite = TR
 
 Convert(paste0(work_path, "HCC_tcell.h5Seurat"), dest = "h5ad")
 
-### Please refer to Step_4_scVelo.ipynb for later analysis
+### Please refer to Step_4_scVelo.py for later analysis
