@@ -16,7 +16,7 @@ source(paste0(work_path, "requirements.R"))
 
 ### We self-defined the preprocessing function and perform on each sample to generate the single-cell multiome seurat object
 ### The input file includes RNA expression and ATAC fragments
-Multiome_preprocessing <- function(sample_path, project){
+multiome_preprocessing <- function(sample_path, project){
 
   ### Load 10x multiome data
   ### scRNA-seq
@@ -124,10 +124,10 @@ Multiome_preprocessing <- function(sample_path, project){
 }
 
 ### We processed the single-cell multiome data for each sample separately
-naive_t <- Multiome_preprocessing("10XSC011-01/", "Naive_T")
-active_t <- Multiome_preprocessing("10XSC011-02/", "Active_T")
-exhaust_t72 <- Multiome_preprocessing("10XSC009-02/", "Exhausted_T_72hr")
-exhaust_t96 <- Multiome_preprocessing("10XSC009-01/", "Exhausted_T_96hr")
+naive_t <- multiome_preprocessing("10XSC011-01/", "Naive_T")
+active_t <- multiome_preprocessing("10XSC011-02/", "Active_T")
+exhaust_t72 <- multiome_preprocessing("10XSC009-02/", "Exhausted_T_72hr")
+exhaust_t96 <- multiome_preprocessing("10XSC009-01/", "Exhausted_T_96hr")
 
 ### save each seurat object
 saveRDS(naive_t, paste0(work_path, "naive_t.rds"))
