@@ -59,4 +59,4 @@ runCorrelation(exprMat_filtered, scenicOptions)
 exprMat_filtered_log <- log2(exprMat_filtered + 1)
 ### Export the data to use GRNboost in python
 exportsForArboreto(exprMat_filtered_log, scenicOptions, dir = "int")
-### We conducted the GRNboost on python, please refer to Section_1_Analysis_of_murine_model/Step_6_TF_GRNboost.py
+### We conducted the GRNboost on python, please refer to Section_1_Analysis_of_murine_model/Step_6-_GRNboost.py
