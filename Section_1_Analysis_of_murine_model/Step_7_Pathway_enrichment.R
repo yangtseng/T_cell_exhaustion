@@ -42,3 +42,9 @@ HCC.tcell[['KEGG']] <- CreateAssayObject(cells_AUC_kegg@assays@data@listData[["A
 HCC.tcell[['Hallmark']] <- CreateAssayObject(cells_AUC_h@assays@data@listData[["AUC"]])
 
 ### Next, we identify activated pathways in specific exhausted T cell clusters (cluster 1 and 4) compared to effector T cells
+### Please refer to section 4 for the visualization code of main figures
+PE <- FindMarkers(HCC.tcell, assay = 'KEGG', only.pos = T, logfc.threshold = 0.01, test.use = 't', ident.1 = c('1','4'), ident.2 = c('2', '7'))
+
+### save files
+saveRDS(HCC.tcell, paste0(work_path, "murine_tcell_pathway7.rds"))
+write.csv(PE, paste0(work_path, "Pathway_enrichment_Tex.csv"))
