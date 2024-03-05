@@ -20,6 +20,8 @@ library(circlize)
 library(dplyr)
 library(readr)
 library(DoubletFinder)
+library(leidenalg)
+library(igraph)
 
 ### ploting
 library(ggplot2)
