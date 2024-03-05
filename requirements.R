@@ -24,6 +24,9 @@ library(readr)
 library(DoubletFinder)
 library(leidenalg)
 library(igraph)
+library(tidyverse)
+library(magrittr)
+library(viridis)
 
 ### ploting
 library(ggplot2)
