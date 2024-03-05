@@ -78,4 +78,4 @@ tcell <- RunUMAP(
 )
 
 ### save the integrated data
-saveRDS(tcell, paste0(work_path, "multiome5.rds"))
+saveRDS(tcell, paste0(work_path, "Cellline_multiome6.rds"))
