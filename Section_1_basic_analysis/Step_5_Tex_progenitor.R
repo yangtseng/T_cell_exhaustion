@@ -10,7 +10,7 @@ set.seed(1234)
 work_path = "./"
 source("requirements.R")
 
-load("murine_tcell3.rds")
+load(paste0(work_path, "murine_tcell_modulescore4.rds"))
 ### It will load a pre-processed seurat object of T cells from section 1, step 3
 
 ################################
