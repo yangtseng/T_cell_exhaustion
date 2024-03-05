@@ -57,6 +57,10 @@ runCorrelation(exprMat_filtered, scenicOptions)
 
 ### log normalization
 exprMat_filtered_log <- log2(exprMat_filtered + 1)
+
+### Export the data for later prediction in R
+saveRDS(exprMat_filtered_log, paste0(work_path, "int/exprMat_filtered_log.rds"))
+
 ### Export the data to use GRNboost in python
 exportsForArboreto(exprMat_filtered_log, scenicOptions, dir = "int")
 ### We conducted the GRNboost on python, please refer to Section_1_Analysis_of_murine_model/Step_6-_GRNboost.py
