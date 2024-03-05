@@ -13,7 +13,7 @@ set.seed(1234)
 work_path = "./"
 source("requirements.R")
 
-load("murine_doubletremoval2.rds")
+HCC <- readRDS(paste0(work_path, "murine_doubletremoval2.rds"))
 ### It will load a pre-processed seurat object of all cells from section 1, step 1
 
 ### Add experimental information based on the murine model design
