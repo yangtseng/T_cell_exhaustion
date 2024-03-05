@@ -10,7 +10,7 @@ set.seed(1234)
 work_path = "./"
 source("requirements.R")
 
-load("murine_tcell_modulescore4.rds")
+HCC.tcell <- readRDS(paste0(work_path, "murine_tcell_modulescore4.rds"))
 
 ### We mainly followed the tutorial of SCENIC 
 ### http://htmlpreview.github.io/?https://github.com/aertslab/SCENIC/blob/master/inst/doc/SCENIC_Running.html
