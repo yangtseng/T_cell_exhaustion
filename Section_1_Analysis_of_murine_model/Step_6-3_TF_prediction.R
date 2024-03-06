@@ -67,10 +67,12 @@ DefaultAssay(HCC_tcell) <- 'TF'
 HCC.tcell <- ScaleData(HCC.tcell)
 
 ### Differentially expressed TF
-TF.markers <- FindMarkers(HCC.tcell, only.pos = TRUE, ident.1 = c('1','4'), ident.2 = c('2', '7'), min.pct = 0.1, logfc.threshold = 0)
+TF.markers <- FindAllMarkers(HCC.tcell, only.pos = TRUE, min.pct = 0.1, logfc.threshold = 0)
+Tex.TF.markers <- FindMarkers(HCC.tcell, only.pos = TRUE, ident.1 = c('1','4'), ident.2 = c('2', '7'), min.pct = 0.1, logfc.threshold = 0)
 
 ### Heatmap visualization [Supp. Fig. 6]
-DoHeatmap(HCC.tcell, features =  HCC.tcell@assays[["TF"]]@data@Dimnames[["gene sets"]], slot = 'scale.data', raster = F) #+ scale_fill_viridis()
+DoHeatmap(HCC.tcell, features =  TF.markers$gene, slot = 'scale.data', raster = F) #+ scale_fill_viridis()
 
 ### save seurat object
+write.csv(Tex.TF.markers, paste0(work_path, "TF_markers.csv"))
 saveRDS(HCC.tcell, paste0(work_path, "murine_tcell_TF6.rds"))
