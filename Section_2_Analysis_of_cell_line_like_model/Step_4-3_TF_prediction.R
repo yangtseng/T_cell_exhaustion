@@ -52,14 +52,14 @@ colnames(regulonAUC_matrix) <- regulonAUC@colData@rownames
 rownames(regulonAUC_matrix) <- regulonAUC@NAMES
 
 ### load seurat object
-tcell <- readRDS(paste0(work_path, "Cell_line.rds"))
+tcell <- readRDS(paste0(work_path, "Cellline_multiome2.rds"))
 
 ### Create TF assay in seurat object
-HCC.tcell[['TF']] <- CreateAssayObject(counts = regulonAUC_matrix)
+tcell[['TF']] <- CreateAssayObject(counts = regulonAUC_matrix)
 
 ############################################################
 ### Step 4, Differential expression analysis with seurat ###
 ############################################################
 
 ### Set default assay to TF
-DefaultAssay(HCC_tcell) <- 'TF'
+DefaultAssay(tcell) <- 'TF'
