@@ -41,10 +41,23 @@ save(cells_AUC_kegg, file = paste0(work_path, 'cells_AUC_kegg.RData'))
 HCC.tcell[['KEGG']] <- CreateAssayObject(cells_AUC_kegg@assays@data@listData[["AUC"]])
 HCC.tcell[['Hallmark']] <- CreateAssayObject(cells_AUC_h@assays@data@listData[["AUC"]])
 
-### Next, we identify activated pathways in specific exhausted T cell clusters (cluster 1 and 4) compared to effector T cells
+### Next, we identified the activated pathways in specific exhausted T cell clusters (cluster 1 and 4) compared to effector T cells
+### On the other hand, we also revealed the pathways activated in specific exhausted T cell clusters (cluster 1 and 4) compared to the rest of T cells
 ### Please refer to section 4 for the visualization code of main figures
-PE <- FindMarkers(HCC.tcell, assay = 'KEGG', only.pos = T, logfc.threshold = 0.01, test.use = 't', ident.1 = c('1','4'), ident.2 = c('2', '7'))
+PE1 <- FindMarkers(HCC.tcell, assay = 'KEGG', only.pos = T, logfc.threshold = 0.01, test.use = 't', ident.1 = c('1','4'), ident.2 = c('2', '7'))
+PE2 <- FindMarkers(HCC.tcell, assay = 'KEGG', only.pos = T, logfc.threshold = 0.01, test.use = 't', ident.1 = c('1','4'))
 
+### To explore the fold enrichment, we calculated the average AUC score for each cluster
+### We then calculated the fold enrichment value by simply divide the sum of cluster 1 and 4 to cluster 2 and 7
+AVG <- AverageExpression(HCC.tcell, assays = "KEGG")[["KEGG"]]
+AVG$FE <- (AVG$`1` + AVG$`4`)/(AVG$`2`+ AVG$`7`)
+
+### We merged PE1 and PE2 to extract the pathways that is specific enriched in cluster 1 and 4 
+PE <- PE1[rownames(PE1) %in% rownames(PE2),]
+AVG <- AVG[rownames(AVG) %in% rownames(PE),]
+
+PE <- cbind(PE, AVG$FE)
+ 
 ### save files
 saveRDS(HCC.tcell, paste0(work_path, "murine_tcell_pathway7.rds"))
 write.csv(PE, paste0(work_path, "Pathway_enrichment_Tex.csv"))
