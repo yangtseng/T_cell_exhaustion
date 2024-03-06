@@ -63,3 +63,17 @@ tcell[['TF']] <- CreateAssayObject(counts = regulonAUC_matrix)
 
 ### Set default assay to TF
 DefaultAssay(tcell) <- 'TF'
+
+### Scale the regulon AUC score
+tcell <- ScaleData(tcell)
+
+### Differentially expressed TF
+TF.markers <- FindAllMarkers(tcell, only.pos = TRUE, min.pct = 0.1, logfc.threshold = 0.1)
+Tex.TF.markers <- FindMarkers(tcell, only.pos = TRUE, ident.1 = c('Exhausted_T_72hr','Exhausted_T_96hr'), ident.2 = c('Active_T'), min.pct = 0.1, logfc.threshold = 0)
+
+### Heatmap visualization [Supp. Fig. 7]
+DoHeatmap(tcell, features = TF.amrkers$gene, slot = 'scale.data', raster = F) #+ scale_fill_viridis()
+
+### save seurat object
+write.csv(Tex.TF.markers, paste0(work_path, "Cellline_TF_markers.csv"))
+saveRDS(tcell, paste0(work_path, "Cellline_TF3.rds"))
