@@ -56,7 +56,7 @@ AVG$FE <- (AVG$`1` + AVG$`4`)/(AVG$`2`+ AVG$`7`)
 PE <- PE1[rownames(PE1) %in% rownames(PE2),]
 AVG <- AVG[rownames(AVG) %in% rownames(PE),]
 
-PE <- cbind(PE, AVG$FE)
+PE <- merge(PE, AVG, by = 'row.names')
  
 ### save files
 saveRDS(HCC.tcell, paste0(work_path, "murine_tcell_pathway7.rds"))
