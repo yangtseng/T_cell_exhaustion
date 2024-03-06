@@ -46,3 +46,21 @@ clusterInfo <- tcell@reductions[["umap"]]@cell.embeddings
 ### Step 3, Construct the co-expression network ###
 ###################################################
 
+### Genes overlap with RcisTarget
+genesKept <- geneFiltering(exprMat, scenicOptions)
+
+### There were 6905 genes available in RcisTarget
+exprMat_filtered <- exprMat[genesKept, ]
+
+### Construct the co-expression network
+runCorrelation(exprMat_filtered, scenicOptions)
+
+### log normalization
+exprMat_filtered_log <- log2(exprMat_filtered + 1)
+
+### Export the data for later prediction in R
+saveRDS(exprMat_filtered_log, paste0(work_path, "int/exprMat_filtered_log.rds"))
+
+### Export the data to use GRNboost in python
+exportsForArboreto(exprMat_filtered_log, scenicOptions, dir = "int")
+### We conducted the GRNboost on python, please refer to Section_2_Analysis_of_cell_line_like_model/Step_4-2_GRNboost.py
