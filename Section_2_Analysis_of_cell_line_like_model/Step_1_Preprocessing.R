@@ -11,7 +11,7 @@
 
 set.seed(1234)
 
-work_path = "./"
+work_path = "./Cellline/"
 source(paste0(work_path, "requirements.R"))
 
 ### We self-defined the preprocessing function and perform on each sample to generate the single-cell multiome seurat object
