@@ -8,7 +8,7 @@
 
 set.seed(1234)
 
-work_path = "./"
+work_path = "./Cellline/"
 source(paste0(work_path, "requirements.R"))
 
 ### Here, we loaded the integrated multiome seurat object
