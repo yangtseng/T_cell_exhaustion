@@ -18,7 +18,7 @@ HCC.tcell <- readRDS(paste0(work_path, "murine_tcell_TF6.rds"))
 
 ### We used AUCell to calculate the enrichment score of pathways for each cell
 ### We first built the rank via the gene expression profile
-CellRank <- AUCell_buildRankings(as.matrix(HCC>tcell@assays$RNA@data))
+CellRank <- AUCell_buildRankings(as.matrix(HCC.tcell@assays$RNA@data))
 
 ### Get mouse gene sets data
 ### Here, we used KEGG and Hallmark gene sets
