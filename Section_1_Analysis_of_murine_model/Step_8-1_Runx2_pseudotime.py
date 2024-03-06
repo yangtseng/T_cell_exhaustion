@@ -39,5 +39,5 @@ g = sns.lmplot(data= df_s, x="latent_time", y= 'value', hue="condition", col = '
 g.fig.supxlabel('Latent time')
 g.fig.supylabel('Relative expression value')
 
-### SAve the plot as PNG file
+### Save the plot as PNG file
 plt.savefig("Runx2_pseudotime.png")
