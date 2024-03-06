@@ -37,4 +37,4 @@ network = grnboost2(expression_data=ex_matrix,
 
 ### We saved the GRN to file
 network.to_csv(out_file, sep='\t', index=False, header=False)
-### We head back to Step_6-1_TF_prediction.R
+### We head to Step_6-3_TF_prediction.R
