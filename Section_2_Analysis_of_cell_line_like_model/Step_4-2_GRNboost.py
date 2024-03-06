@@ -1,6 +1,6 @@
-###########################################
-### Section 1, Anlaysis of murine model ###
-###########################################
+###################################################
+### Section 2, Anlaysis of cell line like model ###
+###################################################
 
 #######################################
 ### Transcription factor prediction ###
@@ -17,9 +17,9 @@ from distributed import Client, LocalCluster
 from arboreto.utils import load_tf_names
 from arboreto.algo import grnboost2
 
-in_file  = 'int/1.1_exprMatrix_filtered_t.txt'
-tf_file  = 'int/1.1_inputTFs.txt'
-out_file = 'int/1.1_grn_output.tsv'
+in_file  = 'Cellline/int/1.1_exprMatrix_filtered_t.txt'
+tf_file  = 'Cellline/int/1.1_inputTFs.txt'
+out_file = 'Cellline/int/1.1_grn_output.tsv'
 
 ### ex_matrix wass a DataFrame with gene names as column names
 ex_matrix = pd.read_csv(in_file, sep='\t')
@@ -37,4 +37,4 @@ network = grnboost2(expression_data=ex_matrix,
 
 ### We saved the GRN to file
 network.to_csv(out_file, sep='\t', index=False, header=False)
-### We head to Step_6-3_TF_prediction.R
+### We head to Step_4-3_TF_prediction.R
