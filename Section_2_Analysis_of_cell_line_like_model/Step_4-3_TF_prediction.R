@@ -38,3 +38,28 @@ scenicOptions@settings$seed <- 123
 scenicOptions <- runSCENIC_1_coexNetwork2modules(scenicOptions)
 scenicOptions <- runSCENIC_2_createRegulons(scenicOptions)
 scenicOptions <- runSCENIC_3_scoreCells(scenicOptions, exprMat_filtered_log)
+
+##################################################
+### Step 3, Exploring SCENIC prediction result ###
+##################################################
+
+### Import regulon AUC data
+regulonAUC <- loadInt(scenicOptions, "aucell_regulonAUC")
+
+### Extract the AUC score
+regulonAUC_matrix <- regulonAUC@assays@data@listData[["AUC"]]
+colnames(regulonAUC_matrix) <- regulonAUC@colData@rownames
+rownames(regulonAUC_matrix) <- regulonAUC@NAMES
+
+### load seurat object
+tcell <- readRDS(paste0(work_path, "Cell_line.rds"))
+
+### Create TF assay in seurat object
+HCC.tcell[['TF']] <- CreateAssayObject(counts = regulonAUC_matrix)
+
+############################################################
+### Step 4, Differential expression analysis with seurat ###
+############################################################
+
+### Set default assay to TF
+DefaultAssay(HCC_tcell) <- 'TF'
