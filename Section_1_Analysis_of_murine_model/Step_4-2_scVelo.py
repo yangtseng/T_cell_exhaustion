@@ -21,8 +21,6 @@ scv.settings.set_figure_params("scvelo")
 
 start_time = time.time()
 
-work_path = "./"
-
 ### Load H5ad file
 adata = scv.read('HCC_tcell.h5ad')
 
@@ -89,3 +87,6 @@ scv.pl.velocity_embedding_grid(HCC_T_cell, basis='umap', palette = ['#f3877f','#
 
 ### Pseudotime [Supp. Fig. 4c]
 scv.pl.scatter(HCC_T_cell, color='latent_time', color_map='gnuplot', size=80)
+
+### Save H5ad
+HCC_T_cell.write_h5ad(filename = "HCC_tcell_scvelo.h5ad")
