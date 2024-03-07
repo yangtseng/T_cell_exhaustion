@@ -40,6 +40,7 @@ library(viridis)
 library(htmg430pm.db)
 library(preprocessCore)
 library(GSVA)
+library(biomaRt)
 
 ### plotting
 library(ggplot2)
