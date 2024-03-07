@@ -58,7 +58,7 @@ dds <- estimateSizeFactors(dds)
 normalized_counts <- counts(dds, normalized=TRUE)
 
 ### save filtered and normalized data
-write.table(normalized_counts, file = paste0(work_path, "Human_bulk_normalized_counts.txt", sep="\t", quote=F, col.names=NA)
+write.table(normalized_counts, file = paste0(work_path, "Human_bulk_normalized_counts.txt", sep="\t", quote=F, col.names=NA))
             
 ####################
 ### Step 3, GSVA ###
