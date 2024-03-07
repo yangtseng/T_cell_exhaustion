@@ -36,7 +36,7 @@ library(igraph)
 library(tidyverse)
 library(magrittr)
 library(viridis)
-library(htmg430pmcdf)
+library(htmg430pm.db)
 library(preprocessCore)
 
 ### ploting
