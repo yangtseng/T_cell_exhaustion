@@ -36,6 +36,8 @@ library(igraph)
 library(tidyverse)
 library(magrittr)
 library(viridis)
+library(htmg430pmcdf)
+library(preprocessCore)
 
 ### ploting
 library(ggplot2)
