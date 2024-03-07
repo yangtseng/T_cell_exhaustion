@@ -41,6 +41,7 @@ library(htmg430pm.db)
 library(preprocessCore)
 library(GSVA)
 library(biomaRt)
+library(DESeq2)
 
 ### plotting
 library(ggplot2)
