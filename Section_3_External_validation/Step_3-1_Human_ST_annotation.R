@@ -10,7 +10,6 @@ set.seed(1234)
 work_path = "./external_validation/"
 source("requirements.R")
 
-
 ### Load ST data
 P1T <- readRDS(paste0(work_path, "Human_ST/P1T_Spatial.rds.gz"))
 P3T <- readRDS(paste0(work_path, "Human_ST/P3T_Spatial.rds.gz"))
