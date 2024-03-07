@@ -140,3 +140,9 @@ subset(P9T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data')
 subset(P10T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #147
 subset(P11T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #128
 
+### The ratio of RUNX2+ exhausted T cell / CD8+ T cell in specific carcinoma region were then calculated
+### 70.7 (P1T), 50 (P3T), 42.6 (P5T), 90.5 (P8T), 94.8 (P11T), 44.8 (P7T), 23.1 (P9T), 38.6 (P10T)
+### The code for main figure was stored in section 4
+### save files
+save(P1T.subT, P3T.subT, P5T.subT, P7T.subT, P8T.subT, P9T.subT, P10T.subT, P11T.subT, file = paste0(work_path, "Human_ST_subT.RData"))
+
