@@ -59,3 +59,25 @@ normalized_counts <- counts(dds, normalized=TRUE)
 
 ### save filtered and normalized data
 write.table(normalized_counts, file = paste0(work_path, "Human_bulk_normalized_counts.txt", sep="\t", quote=F, col.names=NA)
+
+##############################
+### Step 3, Basic analysis ###
+##############################
+
+### We collected the ENSG number of Runx2 modules
+### RUNX2 related genes include IL18RAP, KLRK1, STAT3, RBPJ, LGALS3, RUNX2, NRP1, CTLA4
+### ENSG: IL18RAP(ENSG00000115607), KLRK1(ENSG00000213809), STAT3(ENSG00000168610), RBPJ(ENSG00000168214), 
+### ENSG: LGALS3(ENSG00000131981), RUNX2(ENSG00000124813), NRP1(ENSG00000099250), CTAL4(ENSG00000163599)
+RUNX2_gene <- c('ENSG00000115607', 'ENSG00000213809', 'ENSG00000168610', 'ENSG00000168214', 'ENSG00000131981', 'ENSG00000124813', 'ENSG00000099250', 'ENSG00000163599')
+RUNX2_normalized_counts <- normalized_counts[gsub('\\..*','',rownames(normalized_counts)) %in% RUNX2_gene,]
+
+### To mimic the T cell expression profile, we simply normalized the gene expression profile using CD8A expression level
+cd8a_factor <- as.data.frame(normalized_counts[gsub('\\..*','',rownames(normalized_counts)) %in% 'ENSG00000153563',])
+### Repeat 8 times to fit the Runx2 module matrix
+cd8a_factor <- cd8a_factor[rep(1, 8),]
+RUNX2_CD8A <- RUNX2_normalized_counts/cd8a_factor
+
+### Data scaling
+RUNX2_CD8A.scale <- t(scale(t(RUNX2_CD8A)))
+
+
