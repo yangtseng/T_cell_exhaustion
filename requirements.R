@@ -38,8 +38,10 @@ library(magrittr)
 library(viridis)
 library(htmg430pm.db)
 library(preprocessCore)
+library(GSVA)
 
-### ploting
+### plotting
 library(ggplot2)
+library(ggsignif)
 library(ggpubr)
 library(ggtext)
