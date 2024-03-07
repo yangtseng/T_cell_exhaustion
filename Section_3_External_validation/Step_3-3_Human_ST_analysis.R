@@ -104,26 +104,39 @@ P11T.sub <- subset(P11T, row1 > 290 & col1 > 270)
 ### Step 4, Counting numbers of RUNX2+ exhausted T cell ###
 ###########################################################
 
-### Here, we counted the number of CD3D, CD3E and CD8A+ spots with 25 quantile exhausted module score
-subExhT <- function(ST, idents){
+### Here, we counted the number of CD3D, CD3E and CD8A+ spots
+### We set tw odifferent criteria to obtain the CD8+ T cell population
+### (1) belongs to immune-related clusters. 
+### (2) CD8A, CD3D, CD3E expression level > 75 quantile.
+subT <- function(ST, idents){
   DefaultAssay(ST) <- 'Enhanced'
   a <- as.numeric(quantile(ST@assays[["Enhanced"]]@counts[1,], 0.75))
-  b  <- as.numeric(quantile(ST@assays[["Enhanced"]]@counts[12,], 0.75))
+  b <- as.numeric(quantile(ST@assays[["Enhanced"]]@counts[12,], 0.75))
   c <- as.numeric(quantile(ST@assays[["Enhanced"]]@counts[11,], 0.75))
-  d <- as.numeric(quantile(ST@meta.data[["Exhaust_enhanced_module_data"]], 0.75))
   ST1 <- subset(ST, idents = idents, invert = F)
   ST1 <- subset(ST1, CD8A > a)
   ST1 <- subset(ST1, CD3D > b | CD3E > c)
-  ST1 <- subset(ST1, Exhaust_enhanced_module_data > d)
+  
   return(ST1)
 }
 
-### Number counts
-P1T.subExhT <- subExhT(P1T, 'Immune/CAF') # 154
-P3T.subExhT <- subExhT(P3T, 'Immune/CAF') # 64
-P5T.subExhT <- subExhT(P5T, 'Immune/CAF') # 83
-P7T.subExhT <- subExhT(P7T, 'Immune/CAF') # 277
-P8T.subExhT <- subExhT(P8T, c('Immune','Immune/CAF')) # 446
-P9T.subExhT <- subExhT(P9T, 'Immune') # 24
-P10T.subExhT <- subExhT(P10T, c('Immune','Immune/CAF')) # 146
-P11T.subExhT <- subExhT(P11T, 'Immune/CAF') # 428
+### Extract CD8 T cell from specific carcinoma region
+P1T.subT <- subT(P1T.sub, 'Immune/CAF') #41
+P3T.subT <- subT(P3T.sub, 'Immune/CAF') #20
+P5T.subT <- subT(P5T.sub, 'Immune/CAF') #155
+P7T.subT <- subT(P7T.sub, 'Immune/CAF') #324
+P8T.subT <- subT(P8T.sub, c('Immune','Immune/CAF')) #432
+P9T.subT <- subT(P9T.sub, 'Immune') #360
+P10T.subT <- subT(P10T.sub, c('Immune','Immune/CAF')) #381
+P11T.subT <- subT(P11T.sub, 'Immune/CAF') #135
+
+### Calculate the number of RUNX2+ exhausted T cell spot
+subset(P1T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #29
+subset(P3T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #10
+subset(P5T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #66
+subset(P7T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #145
+subset(P8T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #391
+subset(P9T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #83
+subset(P10T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #147
+subset(P11T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #128
+
