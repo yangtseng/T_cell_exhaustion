@@ -18,7 +18,7 @@ DefaultAssay(tcell) <- 'chromvar'
 
 ### Save
 png(
-  filename  = "/home/rstudio/R/TcExh_fig/4B.png",
+  filename  = paste0(work_path, "Fig_4b.png",
   width     = 7.5,
   height    = 4.5,
   unit = 'in',
