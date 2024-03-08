@@ -11,7 +11,7 @@ work_path = "./main_figures/"
 source("requirements.R")
 
 ### Load latest file
-HCC.tcell <- readRDS(paste0(work_path, "murine_tcell_Runx28.rds"))
+HCC.tcell <- readRDS("./murine_tcell_Runx28.rds")
 
 ###################################################
 ### Step 1, Create doughnuts for each condition ###
