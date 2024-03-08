@@ -11,7 +11,7 @@ work_path = "./main_figures/"
 source("requirements.R")
 
 ### Load latest file
-HCC.tcell <- readRDS(paste0(work_path, "murine_tcell_Runx28.rds"))
+HCC.tcell <- readRDS("./murine_tcell_Runx28.rds")
 
 ### We manually selected six features to identify the Tex progenitor population
 Tex_prog_feature <- c('Ccr7','Il7r','Slamf6','Tcf7', 'Sell','Havcr2')
