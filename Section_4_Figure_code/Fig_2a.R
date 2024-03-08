@@ -11,7 +11,7 @@ work_path = "./main_figures/"
 source("requirements.R")
 
 ### Load latest file
-tcell <- readRDS("./Cellline/Cellline_motif4.rds"))
+tcell <- readRDS("./Cellline/Cellline_motif4.rds")
 
 ### Modify the group names
 group <- c('Active T cell','Exhausted T cell (72 hr)','Exhausted T cell (96 hr)', 'Naïve T cell')
