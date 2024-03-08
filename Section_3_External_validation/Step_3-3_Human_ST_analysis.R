@@ -131,17 +131,18 @@ P10T.subT <- subT(P10T.sub, c('Immune','Immune/CAF')) #381
 P11T.subT <- subT(P11T.sub, 'Immune/CAF') #135
 
 ### Calculate the number of RUNX2+ exhausted T cell spot
-subset(P1T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #29
-subset(P3T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #10
-subset(P5T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #66
-subset(P7T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #145
-subset(P8T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #391
-subset(P9T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #83
-subset(P10T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #147
-subset(P11T.subT, "RUNX2" > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #128
+subset(P1T.subT, RUNX2 > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #19
+subset(P3T.subT, RUNX2 > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #7
+subset(P5T.subT, RUNX2 > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #39
+subset(P7T.subT, RUNX2 > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #76
+subset(P8T.subT, RUNX2 > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #291
+subset(P9T.subT, RUNX2 > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #54
+subset(P10T.subT, RUNX2 > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #88
+subset(P11T.subT, RUNX2 > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') #104
 
 ### The ratio of RUNX2+ exhausted T cell / CD8+ T cell in specific carcinoma region were then calculated
-### 70.7 (P1T), 50 (P3T), 42.6 (P5T), 90.5 (P8T), 94.8 (P11T), 44.8 (P7T), 23.1 (P9T), 38.6 (P10T)
+### 46.34 (P1T), 35 (P3T), 25.16 (P5T), 67.36 (P8T), 77.04 (P11T) [Non-responders
+### 23.46 (P7T), 15 (P9T), 23.1 (P10T) [Responders]
 ### The code for main figure was stored in section 4
 ### save files
 save(P1T.subT, P3T.subT, P5T.subT, P7T.subT, P8T.subT, P9T.subT, P10T.subT, P11T.subT, file = paste0(work_path, "Human_ST_subT.RData"))
