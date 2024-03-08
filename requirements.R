@@ -42,6 +42,8 @@ library(preprocessCore)
 library(GSVA)
 library(biomaRt)
 library(DESeq2)
+library(Rmagic)
+library(phateR)
 
 ### plotting
 library(ggplot2)
