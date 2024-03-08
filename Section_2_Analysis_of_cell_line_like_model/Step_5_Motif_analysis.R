@@ -46,6 +46,17 @@ DARs <- FindMarkers(tcell, ident.1 = c('Exhausted_T_72hr','Exhausted_T_96hr'), i
                     only.pos = TRUE, test.use = "LR", min.pct = 0.05, latent.vars = "nCount_peaks")
 DARs$name <- rownames(DARs)
 
+##############################
+### Step 3, Motif activity ###
+##############################
+
+### Motif acitivty [ChromVAR]
+tcell <-  RunChromVAR(object = tcell, genome = BSgenome.Mmusculus.UCSC.mm10)
+
+### Footprint analysis
+DefaultAssay(tcell) <- 'peaks'
+tcell <- Footprint(object = tcell, motif.name = c("RUNX2"), genome = BSgenome.Mmusculus.UCSC.mm10)
+
 ### save files 
 write.csv(DARs, paste0(work_path, "DARs.csv"))
 saveRDS(tcell, paste0(work_path, "Cellline_motif4.rds"))
