@@ -22,7 +22,6 @@ tcell <- readRDS("Cellline_multiome1.rds")
 DefaultAssay(tcell) <- "SCT"
 
 ### Calculate the module score of exhausted and effectory gene set
-
 ### T cell effectory gene set
 eff <- list(c('Ifng','Ccl3','Ccl4','Prf1','Nkg7','Gzmb','Gzmk'))
 tcell <- AddModuleScore(tcell, features = eff, name = 'effectory')
