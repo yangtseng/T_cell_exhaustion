@@ -126,3 +126,93 @@ png(
   plot_layout(ncol = 3, widths = c(5,-1.1, 0.3))
 
 dev.off()
+
+######################################################
+### Step 5, Exploring the Runx2 regulatory network ###
+######################################################
+
+### We stored the Runx2 regulating genes including murine model and cellline like model
+### Load data
+Runx2_regulatory <- read.csv2("./Runx2_regulatory.csv", header = F, sep = ',')
+
+### Ordering
+Runx2_regulatory <- Runx2_regulatory[order(Runx2_regulatory$V1),]
+
+### Modify network settings
+g <- graph.data.frame(Runx2_regulatory, directed=T)
+bipartite.mapping(g)
+V(g)$type <- bipartite_mapping(g)$type  ### Add the "type" attribute
+
+### To the network.
+V(g)$color <- ifelse(V(g)$type, "lightblue", "salmon")
+V(g)$shape <- ifelse(V(g)$type, "crectangle", "square")
+V(g)$size <- 2
+V(g)$name[2] <- "In vivo\nRunx2"
+V(g)$name[1] <- "Ex vivo\nRunx2"
+E(g)$color <- "lightgray"
+LO <- layout_as_bipartite(g)
+LO <- LO[,2:1]
+for(i in 1:nrow(LO)){
+  if(LO[i,1] == 0){
+    LO[i,1] <- replace(LO[i,1], LO[i,1]==0, 1)
+  }else{
+    LO[i,1] <- replace(LO[i,1], LO[i,1]==1, 0)
+  }
+}
+color1 <- c("#EEC7C0")
+color2 <- c("#FEF7F0")
+color3 <- c('#C6CCD8')
+
+### Save
+png(
+  filename  = paste0(work_path, "Fig_3a-1.png"),
+  width     = 10,
+  height    = 20, 
+  unit = 'in',
+  res = 300
+)
+# par()
+plot.igraph(g, layout = LO, vertex.frame.color = c("white"), vertex.label.cex = 1.5,
+            edge.width = 3, edge.color = 'grey50', edge.arrow.size = 0.6, 
+            vertex.size = c(65, 65, rep(80,31)), vertex.size2 = c(65, 65,rep(6,31)), vertex.label.family = 'Arial',
+            vertex.label.font = 3, vertex.label.color = "black", asp = 3.6,
+            vertex.color = c(rep("#F5DAE3",2), rep(color3,2), color2, rep(color3, 4), rep(c(color2, color3), 3), 
+                             rep(color2, 3), color3, color2, rep(color1, 13)))
+dev.off()
+
+#############################################################
+### Step 6, Exploring the proportion of the Runx2 network ###
+#############################################################
+
+### Basic barplot settings
+net.bar <- as.data.frame(c('In vivo only', 'Both','Ex vivo only'))
+net.bar$value <- c(13/31,8/31,10/31)
+net.bar$value <- net.bar$value*100
+net.bar$value <- round(net.bar$value, 2)
+colnames(net.bar) <- c('condition','value')
+net.bar$name <- factor(net.bar$condition, levels = c('In vivo only', 'Both','Ex vivo only'))
+net.bar$x <- c('Runx2')
+
+### Plotting
+png(
+  filename  = paste0(work_path, "Fig_3a-2.png"),
+  width     = 5,
+  height    = 20, 
+  unit = 'in',
+  res = 300
+)
+
+ggplot(data = net.bar, aes(x = x, y = value, fill = name)) + 
+  geom_bar(position="stack", stat="identity", width = 0.95) + xlab('') + ylab('proportions (%)') +
+  geom_text(aes(label = value), size = 8, hjust = 0.5, vjust = 1.5, position = "stack") +
+  scale_fill_manual(values = c(color1, color2, color3)) +
+  scale_y_continuous(position = "right") +
+  theme_tufte(base_size = 10) + theme(axis.line.x = element_blank(), text=element_text(family="arial")) +
+  annotate(x=2, xend=2, y=0, yend=100, colour="black", lwd=2, geom="segment") + 
+  theme(legend.position = 'right', legend.justification = 'bottom', legend.title = element_blank(), 
+        legend.text = element_text(size = 24, color = 'black')) + 
+  theme(axis.title=element_text(size=30, color = 'black'), axis.text = element_text(size=26, color = 'black')) + 
+  theme(axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank(), 
+        axis.ticks.y = element_line(size = 1.5), axis.title.y = element_text(margin = margin(t = 6)))
+
+dev.off()
