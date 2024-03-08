@@ -77,7 +77,7 @@ scv.tl.latent_time(HCC_T_cell)
 #############################################
 
 ### Main figure [Fig. 1g]
-scvelo = scv.pl.velocity_embedding_stream(HCC_T_cell, basis='umap', size = 50, arrow_size = 1.5, color = 'clusters', figsize = (9,8), save = 'fig1g.png', palette = ['#f3877f','#c2e8bc','#8ed3c7','#d5a3b1','#e1b27a', '#c2c0d6', '#94a8c2','#e2e1c3', '#bd89bd'])
+scvelo = scv.pl.velocity_embedding_stream(HCC_T_cell, basis='umap', size = 50, arrow_size = 1.5, color = 'clusters', figsize = (9,8), save = './main_figure/Fig_1g.png', palette = ['#f3877f','#c2e8bc','#8ed3c7','#d5a3b1','#e1b27a', '#c2c0d6', '#94a8c2','#e2e1c3', '#bd89bd'])
 
 ### Plotting for proportions [Supp. Fig. 4a]
 scv.pl.proportions(HCC_T_cell, save = 'suppfig4a.png')
