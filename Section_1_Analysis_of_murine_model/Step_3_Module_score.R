@@ -39,13 +39,26 @@ HCC.tcell <- AddModuleScore(HCC.tcell, features = cp, name = 'checkpoint')
 
 ### We calcuated the cell cycle score following the seurat tutorial
 ### The gene sets were collected from Tirosh et al, 2015 which could be loaded with Seurat directly
-s.genes <- cc.genes$s.genes
-g2m.genes <- cc.genes$g2m.genes
+### To fit the murine model, we first converted the gene symbol from human to mice
+### Basic function to convert human to mouse gene names
+convertHumanGeneList <- function(x){
+
+  human = useMart("ensembl", dataset = "hsapiens_gene_ensembl", host = "https://dec2021.archive.ensembl.org/")
+  mouse = useMart("ensembl", dataset = "mmusculus_gene_ensembl", host = "https://dec2021.archive.ensembl.org/")
+  
+  genesV2 = getLDS(attributes = c("hgnc_symbol"), filters = "hgnc_symbol", values = x , mart = human, attributesL = c("mgi_symbol"), martL = mouse, uniqueRows=T)  
+  humanx <- unique(genesV2[, 2])
+
+  return(humanx)
+}
+
+### Cell cycle gene lists for mice
+ms.s.genes <- convertHumanGeneList(cc.genes$s.genes)
+ms.g2m.genes <- convertHumanGeneList(cc.genes$g2m.genes)
 
 ### Cell cycle score calculation via CellCycleScoring()
-HCC.tcell <- CellCycleScoring(HCC.tcell, s.features = s.genes, g2m.features = g2m.genes, set.ident = TRUE)
+HCC.tcell <- CellCycleScoring(HCC.tcell, s.features = ms.s.genes, g2m.features = ms.g2m.genes, set.ident = TRUE)
 
 ### save RDS for pre-processed T cell
 saveRDS(HCC.tcell, paste0(work_path, "murine_tcell_modulescore4.rds"))
-
 ### If you would like to check out the code for the visualization of main figures, please refer to section 4.
