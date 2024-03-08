@@ -11,4 +11,4 @@ work_path = "./main_figures/"
 source("requirements.R")
 
 ### Load latest file
-PE <- read.csv(paste0(work_path, "Pathway_enrichment_Tex.csv"), header = 1)
+tcell <- readRDS("./Cellline/Cellline_motif4.rds")
