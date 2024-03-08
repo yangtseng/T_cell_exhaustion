@@ -11,4 +11,4 @@ work_path = "./external_validation/"
 source("requirements.R")
 
 ### Load data
-Load(paste0(work_path, "Human_ST_bayesspace.RData"))
+HCC.tcell <- readRDS(paste0(work_path, "murine_tcell_Runx28.rds"))
