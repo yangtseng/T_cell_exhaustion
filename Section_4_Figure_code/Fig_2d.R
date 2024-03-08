@@ -11,7 +11,7 @@ work_path = "./main_figures/"
 source("requirements.R")
 
 ### Load latest file
-tcell <- readRDS("./Cellline/Cellline_motif4.rds"))
+tcell <- readRDS("./Cellline/Cellline_motif4.rds")
 
 ### The violin plots were based on the module score of exhaustion and effectory
 Eff <- VlnPlot(tcell, features = c('effectory1'), pt.size = 0, cols = c('#9DD2C6','#98A8BE','#CBA5B0','#E98A82')) + xlab('') + ylab('Effectory Module Score') +
