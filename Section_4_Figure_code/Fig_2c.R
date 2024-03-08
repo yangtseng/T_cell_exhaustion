@@ -11,7 +11,7 @@ work_path = "./main_figures/"
 source("requirements.R")
 
 ### Load latest file
-tcell <- readRDS("./Cellline/Cellline_motif4.rds"))
+tcell <- readRDS("./Cellline/Cellline_motif4.rds")
 
 ### This is the code for marker gene visualization
 ### We created the FeaturePlot of several well-known T cell marker genes
