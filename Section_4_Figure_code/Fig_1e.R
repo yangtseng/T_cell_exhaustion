@@ -106,7 +106,7 @@ rdp_ccy_p <- ggplot(rdp_ccy, aes(x = ccy, y = freq, fill = y)) + geom_bar(stat='
 #################################
 
 png(
-  filename  = paste0(work_path, "Fig_1e.png", sep=""),
+  filename  = paste0(work_path, "Fig_1e.png"),
   width     = 9,
   height    = 11,
   unit = 'in',
