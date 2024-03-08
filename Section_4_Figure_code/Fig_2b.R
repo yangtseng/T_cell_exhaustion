@@ -11,7 +11,7 @@ work_path = "./main_figures/"
 source("requirements.R")
 
 ### Load latest file
-tcell <- readRDS("./Cellline/Cellline_motif4.rds"))
+tcell <- readRDS("./Cellline/Cellline_motif4.rds")
 Load("./Cellline/Cellline_DEGs.RData")
 
 ### We manually selected several marker genes
