@@ -145,5 +145,5 @@ subset(P11T.subT, RUNX2 > 0 & Exhaust_enhanced_module > 0, slot = 'scale.data') 
 ### 23.46 (P7T), 15 (P9T), 23.1 (P10T) [Responders]
 ### The code for main figure was stored in section 4
 ### save files
-save(P1T.subT, P3T.subT, P5T.subT, P7T.subT, P8T.subT, P9T.subT, P10T.subT, P11T.subT, file = paste0(work_path, "Human_ST_subT.RData"))
+save(P1T.sub, P3T.sub, P5T.sub, P7T.sub, P8T.sub, P9T.sub, P10T.sub, P11T.sub, file = paste0(work_path, "Human_ST_sub.RData"))
 
