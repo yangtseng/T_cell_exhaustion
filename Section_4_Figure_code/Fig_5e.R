@@ -13,8 +13,8 @@ source("requirements.R")
 ### Load latest file
 load("./external_validation/Human_ST_annotated.RData"))
 ### Including P1T, P3T, P5T, P7T, P8T, P9T, P10T, P11T
-load("./external_validation/Human_ST_subT.RData")
-### Including P1T.subT, P3T.subT, P5T.subT, P7T.subT, P8T.subT, P9T.subT, P10T.subT and P11T.subT
+load("./external_validation/Human_ST_sub.RData")
+### Including P1T.sub, P3T.sub, P5T.sub, P7T.sub, P8T.sub, P9T.sub, P10T.sub and P11T.sub
 
 ### figure (left)
 png(
