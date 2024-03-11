@@ -52,7 +52,7 @@ ggplot(Tex_runx2, aes(x = Exhaustion_module, y = Runx2_module)) +
   guides(color = guide_legend(title = 'Cell types'))
 
 ### Visualize the result using UMAP [Supp. Fig. 8b]
-FeaturePlot(HCC.tcell, features = "Runx2_module1", cols = c('grey80',"#D4524E"), order = F) + ggtitle('Runx2 signature')
+FeaturePlot(HCC_tcell230319, features = 'rna_Runx2', order = F, cols = c('grey90',"#D4524E"), slot = 'data') + ggtitle("Runx2")
 
 ### Visualize the result with violin plot [Supp. Fig. 8c]
 VlnPlot(HCC.tcell, features = "Runx2_module1", group.by = 'seurat_clusters', pt.size = 0, 
