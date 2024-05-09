@@ -20,14 +20,23 @@ boxplot <- function(data, group, range, map_level){
   data <- as.data.frame(t(data)[range])
   colnames(data) <- c('data')
   data$group <- factor(group[range], levels = c('Placebo','Anti-PD1'),ordered = TRUE)
-  p <- ggplot(data, aes(x=group, y=data)) + geom_boxplot(fill = c('#A8D0C7','#D78D82'), outlier.shape = NA) + 
-    geom_point(position=position_jitter(width=0.03)) + ylim(-0.7,0.7) + 
-    geom_signif(comparisons = list(c("Placebo", "Anti-PD1")), test = t.test,
-                map_signif_level = map_level, textsize = 6, vjust = 0.1) + 
+  p <- ggplot(data, aes(x=group, y=data)) + 
+    geom_boxplot(fill = c('#A8D0C7','#D78D82'), outlier.shape = NA, size = .8) + 
+    geom_point(aes(fill = group), pch = 21, stroke = 1.5,
+               position=position_dodge2(width=0.6), size = 2.5) +
+    geom_signif(comparisons = list(c("Placebo", "Anti-PD1")), annotations = "*", 
+                textsize = 10, size = 0.8, vjust = 0.5, y_position = 0.65) + 
+    scale_fill_manual(values = c('#A8D0C7','#D78D82')) +
+    scale_y_continuous(breaks = c(-0.6,-0.3,0,0.3,0.6)) +
     theme_bw() + ylab('GSVA enrichment score (Runx2)') + xlab('Treatment') + 
-    theme(axis.text.x = element_text(size = 20), axis.text.y = element_text(size = 18),
+    theme(text = element_text(family = 'Arial'),
+          axis.text.x = element_text(size = 20, color = 'black'), 
+          axis.text.y = element_text(size = 18, color = 'black'),
           axis.title.x = element_text(size = 20), axis.title.y = element_text(size = 20,hjust = 1),
-          legend.title = element_text(size = 14), legend.text = element_text(size = 12))
+          panel.grid.minor = element_blank(), panel.grid.major = element_blank(),
+          legend.title = element_text(size = 14), legend.text = element_text(size = 12),
+          legend.position = "None") +
+    coord_cartesian(ylim=c(-0.7,0.75))
   return(p)
 }
 
