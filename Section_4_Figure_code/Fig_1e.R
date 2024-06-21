@@ -113,7 +113,7 @@ rdp_ccy_p <- ggplot(rdp_ccy, aes(x = ccy, y = ratio, fill = y)) + geom_bar(stat=
 
 png(
   filename  = paste0(work_path, "Fig_1e.png"),
-  width     = 9,
+  width     = 9.2,
   height    = 11,
   unit = 'in',
   res = 300
