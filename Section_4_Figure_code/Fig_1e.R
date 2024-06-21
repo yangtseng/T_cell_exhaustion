@@ -85,21 +85,27 @@ rdp_ccy_ct <- c('Exhausted\n T cell','Effector\n T cell','Memory\n T cell', 'Exh
                 'Proliferative\n T cell','High IFN\n response\n T cell')
 rdp_ccy$cell_type <- rep(rdp_ccy_ct, 3)
 colnames(rdp_ccy) <- c('y','ccy', 'freq','group')
-rdp_ccy$y <- paste0('C', rdp_ccy$y)
-rdp_ccy$group <-  factor(rdp_ccy$group, levels = c('High IFN\n response\n T cell','Proliferative\n T cell', 'Memory\n T cell', 'Effector\n T cell', 'Exhausted\n T cell'))
+
+### calculate the ratio
+rdp_ccy$cell_counts <- rep(summary(HCC_tcell@meta.data[["seurat_clusters"]]), 3)
+rdp_ccy$ratio <- rdp_ccy$freq/rdp_ccy$cell_counts
 
 ### Reordering
+rdp_ccy$y <- paste0('C', rdp_ccy$y)
+rdp_ccy$group <-  factor(rdp_ccy$group, levels = c('High IFN\n response\n T cell','Proliferative\n T cell', 'Memory\n T cell', 'Effector\n T cell', 'Exhausted\n T cell'))
 rdp_ccy <- rdp_ccy[order(rdp_ccy$group),]
 
 ### Barplot
-rdp_ccy_p <- ggplot(rdp_ccy, aes(x = ccy, y = freq, fill = y)) + geom_bar(stat='identity', width = 0.8) + 
-  scale_y_discrete(expand = expansion(add = c(0.025, 0.9))) + scale_x_discrete(expand = expansion(add = c(0.01, 0.4))) +
+rdp_ccy_p <- ggplot(rdp_ccy, aes(x = ccy, y = ratio, fill = y)) + geom_bar(stat='identity', width = 0.8) + 
+  scale_y_continuous(limits = c(0,0.8), breaks = c(0,0.3, 0.6), expand = expansion(add = c(0,0))) + 
+  scale_x_discrete(expand = expansion(add = c(0.6, 0.4))) +
   facet_nested(group + factor(y, levels = c('C9','C8','C3','C7','C2','C6','C5','C4','C1'))~., 
-               scales = "free_x", space = "free", switch = "y") + theme_bw() + ylab("") + xlab('Cell Cycle\nPhase') +
+               scales = "free_x", space = "free", switch = "y") + theme_bw() + ylab("") + xlab('Phase\nProportion') +
   scale_fill_manual(values = c('#f3877f','#c2e8bc','#8ed3c7','#d5a3b1','#e1b27a', '#c2c0d6', '#94a8c2','#e2e1c3', '#bd89bd')) +
-  theme(strip.placement = "outside", strip.background = element_rect(colour=NA, fill=NA), legend.position = 'none',
-        panel.border = element_blank(), panel.grid = element_line(color = NA), axis.text.y = element_blank(),  strip.text.y = element_blank(),
-        axis.title.x = element_text(size = 18, color = 'black', hjust = 0), axis.text.x = element_text(size = 14, color = 'black'), axis.ticks = element_blank())
+  theme(strip.placement = "outside", strip.background = element_rect(colour=NA, fill=NA), legend.position = 'none', axis.line.y.left = element_line(color = 'black'),
+        panel.border = element_blank(), panel.grid = element_line(color = NA), strip.text.y = element_blank(), axis.text.y = element_text(size = 10, color = 'black'),  
+        axis.title.x = element_text(size = 18, color = 'black', hjust = 0), axis.text.x = element_text(size = 14, color = 'black')) + 
+  coord_capped_cart(left='both')
 
 #################################
 ### Step 4, Combine the plots ###
