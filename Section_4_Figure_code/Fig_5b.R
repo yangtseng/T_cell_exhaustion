@@ -42,7 +42,7 @@ boxplot <- function(data, group, range, map_level){
 
 ### Plot and save
 png(
-  filename = paste0(work_path, "Fig_5b.R",
+  filename = paste0(work_path, "Fig_5b.png",
   width = 4.5,
   height = 4.5,
   units = 'in',
