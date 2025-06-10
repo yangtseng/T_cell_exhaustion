@@ -22,7 +22,7 @@ HCC.tcell <- readRDS(paste0(work_path, "murine_tcell_Pathway7.rds"))
 Runx2_module <- c('Runx2','Ctla4','Nrp1','Lgals3','Rbpj','Stat3','Klrk1','Il18rap')
 
 ### Module score calcuation
-HCC.tcell <- AddModuleScore(HCC.tcell, features = list(Runx2_sig), name = "Runx2_module")
+HCC.tcell <- AddModuleScore(HCC.tcell, features = list(Runx2_module), name = "Runx2_module")
 
 ##########################################################################
 ### Explore the relationship between Runx2 and exhaustion module score ###
