@@ -100,7 +100,8 @@ ggplot(df, aes(x=day, y=avg, group=group, color=group)) +
         axis.ticks = element_line(color = 'black'),
         legend.title = element_text(size = 15), 
         legend.text = element_text(size = 12)) + 
-  scale_color_manual("Group", values = c('#A8D0C7','#D78D82')) + 
+  scale_color_manual("Group", values = c('#D78D82', '#A8D0C7'),
+                     guide = guide_legend(reverse = TRUE)) + 
   annotate("text",label = "*", x = 23, y = 830, size = 5) +
   annotate("text",label = "***", x = 30, y = 1050, size = 5) +
   annotate("text",label = "***", x = 37, y = 2100, size = 5) +
