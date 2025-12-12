@@ -1,7 +1,17 @@
 # **TcExh_code**
 
-The scripts that are used for analyzing datasets in the paper: [title] ([link])
+The scripts that are used for analyzing datasets in the paper: [Transcriptional dynamics of CD8+ T-cell exhaustion in immune checkpoint inhibitor resistance at single-cell resolution] (https://doi.org/10.1186/s12943-025-02468-7)
 
-Tumor-specific CD8+ T lymphocytes are crucial for anti-cancer immunity but can lose cytotoxic function in the immunosuppressive tumor microenvironment. Immune checkpoint inhibitors (ICI), like anti-PD-1 therapy, enhance and prolong anti-tumor T cell responses. Despite its widespread clinical use, resistance to ICI develops in some patients, characterized by the proliferation of exhausted T cell (Tex). Here, we establish two single-cell murine hepatocellular carcinoma (HCC) models to explore regulatory network in Tex with ICI resistance. We uncover distinct T cell compositions, including both early and terminal Tex subsets, following prolonged ICI treatment, and reveal the differentiation trajectory of Tex subsets. Finally, we not only identify transcription factor Runx2 and its downstream targets as contributors to T cell exhaustion in both models, but discover ICI response correlates to Runx2 level in human tumor-infiltrating lymphocytes. These findings elucidate Runx2 regulates T cell exhaustion in response to prolonged ICI treatment, influencing ICI efficiency, and suggest potential targets for combination therapy alongside ICI in HCC.
+Background
+Tumor-specific CD8+ T lymphocytes play a critical role in anticancer immunity but frequently become dysfunctional and exhausted within the immunosuppressive tumor microenvironment. Although immune checkpoint inhibitors can restore T-cell activity, resistance to these treatments remains a significant challenge. Therefore, understanding the transcriptional and regulatory mechanisms underlying CD8+ T-cell exhaustion is crucial for the development of effective therapies.
+
+Methods
+We developed two murine models of acquired immune checkpoint inhibitor resistance through prolonged anti-PD1 treatment. To gain insight into CD8+ T-cell exhaustion, we performed single-cell multiomics analysis, including both scRNA-seq and scATAC-seq, to capture gene expression profiles and chromatin accessibility. Moreover, we collected three external datasets to validate the results in silico. We further assessed the therapeutic potential of Runx2 through marker expression and cytotoxicity assays.
+
+Results
+Our single-cell analysis revealed distinct T-cell subsets, including early and terminally exhausted populations, along with their exhaustion trajectories. Runx2 was identified as a key transcription factor associated with CD8+ T-cell exhaustion in both models and correlated with immunotherapy response in clinical data. Additionally, functional marker expression and cytotoxicity assays demonstrated that inhibiting Runx2 improved CD8+ T-cell cytotoxicity.
+
+Conclusions
+These findings highlight the role of Runx2 as a crucial regulator of CD8+ T-cell exhaustion in the context of prolonged immune checkpoint inhibitor treatment. Targeting Runx2 may provide a novel strategy to overcome immune checkpoint inhibitor resistance and enhance therapeutic efficacy, offering promising avenues for combination therapies.
 
 The data used in these scripts can be found at [link]
