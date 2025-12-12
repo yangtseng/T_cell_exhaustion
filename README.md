@@ -1,6 +1,8 @@
 # **TcExh_code**
 
-The scripts that are used for analyzing datasets in the paper: Transcriptional dynamics of CD8+ T-cell exhaustion in immune checkpoint inhibitor resistance at single-cell resolution (https://doi.org/10.1186/s12943-025-02468-7)
+The scripts that are used for analyzing datasets in the paper: 
+
+## Transcriptional dynamics of CD8+ T-cell exhaustion in immune checkpoint inhibitor resistance at single-cell resolution (https://doi.org/10.1186/s12943-025-02468-7)
 
 ### Background
 
