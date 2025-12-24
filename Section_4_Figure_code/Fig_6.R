@@ -1,10 +1,12 @@
+#################
+### Fig. 6A-F ###
+#################
+
+### libraries
 library(ggplot2)
 library(ggpubr)
+library(ggsignif)
 
-
-
-### Boxplot
-work_path <- '/home/rstudio/R/TcExh/figure/Figure6_new/'
 ### IFN-g
 df <- data.frame(data1 = c(10.4, 10.3, 11.5, 10.3, 13.4, 50.7, 53.2, 52.1, 54.4, 55.7),
                  data2 = c('Vehicle','Vehicle','Vehicle','Vehicle','Vehicle','CADD522','CADD522','CADD522','CADD522','CADD522'))
