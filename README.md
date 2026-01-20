@@ -21,4 +21,4 @@ Our single-cell analysis revealed distinct T-cell subsets, including early and t
 
 These findings highlight the role of Runx2 as a crucial regulator of CD8+ T-cell exhaustion in the context of prolonged immune checkpoint inhibitor treatment. Targeting Runx2 may provide a novel strategy to overcome immune checkpoint inhibitor resistance and enhance therapeutic efficacy, offering promising avenues for combination therapies.
 
-The data used in these scripts can be found at [link]
+The data used in these scripts can be found at [[link]](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE268165)
